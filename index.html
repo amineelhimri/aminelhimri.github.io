@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/3ed0f05180.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css/index.css">
+        <title>Ultimate</title>
+    </head>
+    <body>
+        <div class="container container_1">
+            <div class="d1">
+                <img src="img/logo.png" alt="logo">
+            </div>
+            <div class="d2">
+                <form id="form1">
+                <div class="d2_d1">
+        
+                    <input type="text" id="player1" name="player1" placeholder="Joueur 1">
+                </div>
+                <div class="d2_d2">
+                    
+                    <input type="text" id="player2" name="player2" placeholder="Joueur 2">
+                </div>
+                <div  class="d2_d3">
+                    <label for="rules">Format</label>
+                    <select id="rules" name="rules">
+                        <option value="Irules">International rules</option>
+                        <option value="Shotout">Shotout</option>
+                    </select>
+                </div>
+                <div class="d2_d4">
+                    <label for="race">Race To</label>
+                    <select id="race" names="race">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="d2_d5">
+                    <label for="matchTime">Match</label>
+                    <select id="matchTime" names="matchTime">
+                        <option value="01:00">1 min</option>
+                        <option value="10:00">10 min</option>
+                        <option value="20:00">20 min</option>
+                        <option value="30:00">30 min</option>
+                        <option value="40:00">40 min</option>
+                        <option value="50:00">50 min</option>
+                        <option value="01:00">60 min</option>
+                        <option value="01:10:00">70 min</option>
+                        <option value="01:20:00">80 min</option>
+                        <option value="01:30:00">90 min</option>
+                        <option value="01:40:00">100 min</option>
+                        <option value="01:50:00">110 min</option>
+                        <option value="02:00:00">120 min</option>
+                    </select>
+                </div>
+                <div class="d2_d6">
+                    <label for="shotTime">Coup</label>
+                    <select id="shotTime" names="shotTime">
+                        <option value="20">20 sec</option>
+                        <option value="25">25 sec</option>
+                        <option value="30">30 sec</option>
+                        <option value="35">35 sec</option>
+                        <option value="40">40 sec</option>
+                        <option value="45">45 sec</option>
+                        <option value="50">50 sec</option>
+                        <option value="55">55 sec</option>
+                        <option value="60">60 sec</option>
+                    </select>   
+                </div> 
+                <div class="d2_d7">
+                    <label for="E_Time">Extension</label>
+                    <select id="E_Time" names="E_Time">
+                        <option value="10">10 sec</option>
+                        <option value="15">15 sec</option>
+                        <option value="20">20 sec</option>
+                        <option value="25">25 sec</option>
+                        <option value="30">30 sec</option>
+                    </select>
+                </div>    
+                <div class="d2_d8">
+                    <button class="Set" id="Set">Confirm</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        <script> 
+            const form = document.getElementById('form1');
+            const P_1 = document.getElementById('player1');
+            const P_2 = document.getElementById('player2');
+            const Format = document.getElementById('rules');
+            const M_Time = document.getElementById('matchTime');
+            const S_Time = document.getElementById('shotTime');
+            const E_Time = document.getElementById('E_Time');          
+            const comfirm = document.getElementById('Set');
+            const race = document.getElementById('race');
+
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const p1 = P_1.value;
+                const p2 = P_2.value;
+                const matchTime = M_Time.value;
+                const shotTime = S_Time.value;
+                const extension = E_Time.value;
+                const raceTo = race.value;
+                const rules = Format.value;
+                localStorage.clear();
+                localStorage.setItem("P_1", p1);
+                localStorage.setItem("P_2", p2);
+                localStorage.setItem("Format", rules);
+                localStorage.setItem("M_Time", matchTime);
+                localStorage.setItem("S_Time", shotTime);
+                localStorage.setItem("E_Time", extension);
+                localStorage.setItem("raceTo", raceTo);
+                window.location.href = "index1.html";
+            })
+        </script>
+    </body>
+</html>
