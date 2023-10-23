@@ -37,6 +37,7 @@ const plus1 = document.getElementById('plus1');
 const plus2 = document.getElementById('plus2');
 const minus1 = document.getElementById('minus1');
 const minus2 = document.getElementById('minus2');
+const borderChrono = document.getElementById('borderChrono');
 const ExtensionAudio = new Audio("./audio/extension.mp3");
 const ShotTimeAudioAlert = new Audio('./audio/shotTime.mp3');
 const ShotTimeAlertIntense = new Audio('./audio/shotTimeAlertIntense.mp3');
@@ -52,6 +53,14 @@ var ShotTimeLeft = parseInt(shotTimeValue);
 var interval;
 var interval1;
 var phaseF = false;
+function chronoBorder1(t){
+    if(t == 1){
+        borderChrono.style = "border-color: var(--border-chrono-1) var(--border-chrono-2) var(--border-chrono-1) var(--border-chrono-2);"
+    }
+    else{
+        borderChrono.style = "border-color: var(--border-chrono-2) var(--border-chrono-1) var(--border-chrono-2) var(--border-chrono-1);"
+    }
+}
 
 function playSound(AudioName){
     let audio = new Audio(AudioName);
@@ -59,11 +68,11 @@ function playSound(AudioName){
 }
 
 function ExtensionNoneAvailable(exten) {
-    exten.style = "background-color: #E8E8E8; color: #00000080;";
+    exten.style = "background-color: var(--white); color: var(--score-board);";
 }
 
 function ExtensionAvailable(exten) {
-    exten.style = "background-color: #333333; color: white;";
+    exten.style = "background-color: var(--score-board); color: var(--couleur-text);";
 }
 
 ETime1.addEventListener("click", function() {
@@ -214,6 +223,7 @@ const start = document.getElementById('start');
 
 
 function displayShotTime(){
+    chronoBorder1(ShotTimeLeft % 2);
     ShotTimeLeft--;
     if(ShotTimeLeft == -1){
         TimeIsUp.play();
