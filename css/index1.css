@@ -192,6 +192,7 @@ button:active, i:active {
     font-weight: bold;
     border: none;
     border-radius: 5px;
+    justify-content: center;
 }
 
 
