@@ -48,7 +48,7 @@ button:active, i:active {
 }
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
     body {
         font-size: 100%;
     }
@@ -175,6 +175,7 @@ button:active, i:active {
     flex-wrap: wrap;
     align-content: center;
     width: 40%;
+    gap: 10%;
 }
 
 .E {
@@ -195,7 +196,7 @@ button:active, i:active {
 
 
 .d4_d1_d1 button, .d4_d3_d1 button {
-    width: 50%;
+    width: 45%;
     height: 80%;
     font-size: 1.5em;
     font-weight: bold;
