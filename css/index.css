@@ -44,7 +44,7 @@ button:active {
     box-shadow: 0.3rem 0.3rem 0.6rem var(--couleur-shadow), -0.2rem -0.2rem 0.5rem var(--white);
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
     body {
         font-size: 100%;
     }
