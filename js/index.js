@@ -52,7 +52,15 @@ var MatchTimePaused = true;
 var ShotTimeLeft = parseInt(shotTimeValue); 
 var interval;
 var interval1;
+var interval2;
 var phaseF = false;
+
+
+
+function alerTime(){
+    STime.style = "animation-name: flash;"
+}
+
 function chronoBorder1(t){
     if(t == 1){
         borderChrono.style = "border-color: var(--border-chrono-1) var(--border-chrono-2) var(--border-chrono-1) var(--border-chrono-2);"
@@ -172,18 +180,21 @@ function displayMatchTime(){
     }
 
     if(matchTimeLeft == -1000){
+        MTime.style = "color: var(--couleur-timer-2);";
         clearInterval(interval1);
         t1 = 2;
         stoppy();
-        STime.textContent = "0";
+        STime.textContent = "0"; 
+        alerTime();
         TimeIsUp.play();
     }
     else{
         MTime.textContent = time;
     }
 
-    if(matchTimeLeft <= (1000 * 60 * 10)){
+    if(matchTimeLeft <= (1000 * 60 * 10) && matchTimeLeft > 0){
         phaseF = true;
+        MTime.style = "color: var(--couleur-timer-1);";
     }
 }
 
@@ -228,17 +239,20 @@ function displayShotTime(){
     if(ShotTimeLeft == -1){
         TimeIsUp.play();
         clearInterval(interval);
-    }
-    else{
-        STime.textContent = ShotTimeLeft;
+        return;
     }
     if(ShotTimeLeft == 15){
         ShotTimeAudioAlert.play();
     }
 
     if(ShotTimeLeft <= 5 && ShotTimeLeft >= 0){
+        alerTime();
         ShotTimeAudioAlert.play();
     }
+    else{
+        STime.style = "color: var(--couleur-timer);";
+    }
+    STime.textContent = ShotTimeLeft;
 }
 
 function startShot(){
@@ -257,10 +271,18 @@ start.addEventListener("click", function() {
 const stopp = document.getElementById('stop');
 
 function stoppy() {
+    STime.style = "color: var(--couleur-timer);"
+    if(phaseF){
+        shotTimeValue = 15;
+        ExtensionTime = 10;
+    }
     ShotTimeLeft = parseInt(shotTimeValue);
     STime.textContent = ShotTimeLeft;
     clearInterval(interval);
-    ShotTimeAlertIntense.pause();
+    if(phaseF){
+        shotTimeValue = 15;
+        ExtensionTime = 10;
+    }
 }
 stopp.addEventListener("click", function() {
     if(t1 == 1){
