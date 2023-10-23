@@ -5,7 +5,7 @@
     --couleur-timer-2:  #FF000090;
 
     --white: #CFE9E2;
-    --couleur-background: #9FC1B8;
+    --couleur-background: #31525D;
     --couleur-shadow: #4AA29F;
     --couleur-shadow-box: #397D7B;
     --border-chrono-1: #438886;
@@ -28,7 +28,7 @@
 body {
     margin: 0;
     font-size: 160%;
-    background-image: url('../img/background3.jpg');
+    background-image: url('../img/background4.jpg');
     background-position: center;
     text-shadow: 2px 2px 2px var(--score-board);
 
@@ -37,8 +37,7 @@ body {
 button, i {
     cursor: pointer;
     border: none;
-    text-shadow: 2px 2px 2px var(--couleur-background);
-    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--score-board), inset -0.2rem -0.2rem 0.5rem var(--couleur-background);
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--score-board), -0.2rem -0.2rem 0.5rem var(--couleur-background);
     background-color: var(--white);
     color: var(--score-board);
     transition: 0.3s ease;
@@ -131,7 +130,7 @@ button:active, i:active {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-image: linear-gradient(to bottom, var(--couleur-background), var(--score-board));
-    box-shadow:  0.4rem 0.4rem 1rem var(--couleur-shadow-box), -0.4rem -0.4rem 1rem var(--couleur-shadow-box);
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
 }
 
 .d4 {
@@ -144,7 +143,7 @@ button:active, i:active {
     padding: 1vh 1vh;
     border-radius: 28px;
     background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
-    box-shadow:  0.4rem 0.4rem 1rem var(--couleur-shadow-box), -0.4rem -0.4rem 1rem var(--couleur-shadow-box);
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
 }
 
 
@@ -209,7 +208,7 @@ button:active, i:active {
 
 .d4_d2 {
     width: 26%;
-    font-size: 2.2em;
+    font-size: 2em;
     font-weight: 700;
     text-align: center;
     color: var(--couleur-text);
@@ -228,7 +227,7 @@ button:active, i:active {
     padding: 1vh 1vh;
     border-radius: 28px;
     background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
-    box-shadow:  0.4rem 0.4rem 1rem var(--couleur-shadow-box), -0.4rem -0.4rem 1rem var(--couleur-shadow-box);
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
 }
 
 .d5 button{
@@ -282,7 +281,7 @@ button:active, i:active {
     align-items: center;
     border-radius: 28px;
     background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
-    box-shadow:  0.4rem 0.4rem 1rem var(--couleur-shadow-box), -0.4rem -0.4rem 1rem var(--couleur-shadow-box);
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
     padding: 2vh;
 }
 

@@ -40,7 +40,7 @@ const minus2 = document.getElementById('minus2');
 const borderChrono = document.getElementById('borderChrono');
 const ExtensionAudio = new Audio("./audio/extension.mp3");
 const ShotTimeAudioAlert = new Audio('./audio/shotTime.mp3');
-const ShotTimeAlertIntense = new Audio('./audio/shotTimeAlertIntense.mp3');
+const TimeClose = new Audio('./audio/TimeClose.mp3')
 const TimeIsUp = new Audio('./audio/TimeIsUp.mp3');
 
 var matchTimeLeft;
@@ -247,7 +247,7 @@ function displayShotTime(){
 
     if(ShotTimeLeft <= 5 && ShotTimeLeft >= 0){
         alerTime();
-        ShotTimeAudioAlert.play();
+        TimeClose.play();
     }
     else{
         STime.style = "color: var(--couleur-timer);";

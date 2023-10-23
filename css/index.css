@@ -4,7 +4,7 @@
     --couleur-chrono: #5b0eeb;
 
     --white: #CFE9E2;
-    --couleur-background: #9FC1B8;
+    --couleur-background: #31525D;
     --couleur-shadow: #4AA29F;
     --couleur-shadow-box: #397D7B;
     --border-chrono-1: #CFE9E2;
@@ -27,7 +27,7 @@
 body{
     margin: 0;
     font-size: 160%;
-    background-image: url('../img/background3.jpg');
+    background-image: url('../img/background4.jpg');
     background-position: center;
     text-shadow: 2px 2px 2px var(--score-board);
 }
@@ -164,7 +164,7 @@ select {
     width: 50%;
     font-size: 1em;
     border: none;
-    background-image: url('../img/background3.jpg');
+    background-image: url('../img/background4.jpg');
     border-radius: 9999px;
     padding: 1.5vh;
 }
