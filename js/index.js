@@ -14,7 +14,6 @@ var ExtensionTime = parseInt(localStorage.getItem('E_Time'));
 const raceValue = parseInt(localStorage.getItem('raceTo'));
 const rules = localStorage.getItem('Format');
 
-var t5 = 0;
 
 if(rules === "Shotout"){
     document.getElementById("Time").style = "display: none;";
@@ -29,6 +28,13 @@ STime.textContent = shotTimeValue;
 race.textContent = `Race To ${raceValue}`;
 
 
+if(player1Value === ""){
+    player1.textContent = "Player 1";
+}
+
+if(player2Value === ""){
+    player2.textContent = "Player 2";
+}
 
 
 const score1 = document.getElementById('score1');
@@ -40,8 +46,9 @@ const minus2 = document.getElementById('minus2');
 const borderChrono = document.getElementById('borderChrono');
 const ExtensionAudio = new Audio("./audio/extension.mp3");
 const ShotTimeAudioAlert = new Audio('./audio/shotTime.mp3');
-const TimeClose = new Audio('./audio/TimeClose.mp3')
+const TimeClose = new Audio('./audio/TimeClose.mp3');
 const TimeIsUp = new Audio('./audio/TimeIsUp.mp3');
+const r = document.querySelector(':root');
 
 var matchTimeLeft;
 var t1 = 0;
@@ -54,6 +61,7 @@ var interval;
 var interval1;
 var interval2;
 var phaseF = false;
+var shotRuning = false;
 
 
 
@@ -84,7 +92,7 @@ function ExtensionAvailable(exten) {
 }
 
 ETime1.addEventListener("click", function() {
-    if(t3 == 0 && ShotTimeLeft <= 15 && ShotTimeLeft >= 0){
+    if(t3 == 0 && ShotTimeLeft >= 0 && shotRuning){
         ExtensionAudio.play();
         ExtensionNoneAvailable(ETime1);
         t3 = 1;
@@ -93,7 +101,7 @@ ETime1.addEventListener("click", function() {
 })
 
 ETime2.addEventListener("click", function() {
-    if(t4 == 0 && ShotTimeLeft <= 15 && ShotTimeLeft >= 0){
+    if(t4 == 0 && ShotTimeLeft >= 0 && shotRuning){
         ExtensionAudio.play();
         ExtensionNoneAvailable(ETime2);
         t4 = 1;
@@ -184,6 +192,7 @@ function displayMatchTime(){
         clearInterval(interval1);
         t1 = 2;
         stoppy();
+        r.style.setProperty('--border-chrono-1','#FF000090');
         STime.textContent = "0"; 
         alerTime();
         TimeIsUp.play();
@@ -246,11 +255,13 @@ function displayShotTime(){
     }
 
     if(ShotTimeLeft <= 5 && ShotTimeLeft >= 0){
+        r.style.setProperty('--border-chrono-1','#FF000090');
         alerTime();
         TimeClose.play();
     }
     else{
         STime.style = "color: var(--couleur-timer);";
+        r.style.setProperty('--border-chrono-1','#00FF7F');
     }
     STime.textContent = ShotTimeLeft;
 }
@@ -259,6 +270,7 @@ function startShot(){
     if(ShotTimeLeft == parseInt(shotTimeValue) && t2 == 0){
         displayShotTime();
         interval = setInterval(displayShotTime, 1000);
+        shotRuning = true;
     }
 }
 
@@ -272,6 +284,7 @@ const stopp = document.getElementById('stop');
 
 function stoppy() {
     STime.style = "color: var(--couleur-timer);"
+    r.style.setProperty('--border-chrono-1','#00FF7F');
     if(phaseF){
         shotTimeValue = 15;
         ExtensionTime = 10;
@@ -279,10 +292,7 @@ function stoppy() {
     ShotTimeLeft = parseInt(shotTimeValue);
     STime.textContent = ShotTimeLeft;
     clearInterval(interval);
-    if(phaseF){
-        shotTimeValue = 15;
-        ExtensionTime = 10;
-    }
+    shotRuning = false;
 }
 stopp.addEventListener("click", function() {
     if(t1 == 1){

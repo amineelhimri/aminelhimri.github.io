@@ -1,10 +1,10 @@
 :root {
-    --score-board: #438886;
+    --score-board: #335060;
     --couleur-text-hover: #91DEBF;
     --couleur-chrono: #5b0eeb;
 
-    --white: #CFE9E2;
-    --couleur-background: #31525D;
+    --white: rgba(0,0,0,0.5);
+    --couleur-background: #0196b0;
     --couleur-shadow: #4AA29F;
     --couleur-shadow-box: #397D7B;
     --border-chrono-1: #CFE9E2;
@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: myFirstFont;
-    src: url(sansation_light.woff);
+    src: url(../font/Poppins-Medium.ttf);
  }
 
 * {
@@ -101,7 +101,7 @@ select {
     width: 80%;
     height: fit-content;
     padding: 2vh;
-    background-color: var(--couleur-background);
+    background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
     box-shadow:  0.4rem 0.4rem 1rem var(--couleur-shadow-box), -0.4rem -0.4rem 1rem var(--couleur-shadow-box);
     margin: 0 auto;
 }

@@ -1,21 +1,21 @@
-:root {
-    --score-board: #438886;
-    --couleur-timer: 		#00FF7F;
+    :root {
+    --score-board: #335060;
+    --couleur-timer: #00FF7F;
     --couleur-timer-1: #FFFF0090;
     --couleur-timer-2:  #FF000090;
 
     --white: #CFE9E2;
-    --couleur-background: #31525D;
+    --couleur-background: #0196b0;
     --couleur-shadow: #4AA29F;
     --couleur-shadow-box: #397D7B;
-    --border-chrono-1: #438886;
+    --border-chrono-1: #00FF7F;
     --border-chrono-2: #E8E8E8;
     --couleur-text: #CFE9E2;
 }
 
 @font-face {
     font-family: myFirstFont;
-    src: url(sansation_light.woff);
+    src: url(../font/Poppins-Medium.ttf);
  }
 
 * {
@@ -37,24 +37,28 @@ body {
 button, i {
     cursor: pointer;
     border: none;
-    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--score-board), -0.2rem -0.2rem 0.5rem var(--couleur-background);
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--score-board), 0.2rem 0.2rem 0.5rem var(--couleur-background);
     background-color: var(--white);
     color: var(--score-board);
     transition: 0.3s ease;
 }
 
 button:active, i:active {
-    box-shadow: 0.2rem 0.2rem 0.5rem var(--couleur-background), inset -0.2rem -0.2rem 0.5rem var(--couleur-background);
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--score-board), inset -0.2rem -0.2rem 0.5rem var(--score-board);
 }
 
 
 @media screen and (max-width: 600px) {
     body {
-        font-size: 100%;
+        font-size: 80%;
     }
 
     .d6_d1 {
         width: 65%;
+    }
+
+    .d4_d2 {
+        margin-top: 0.25rem;
     }
 }
 
@@ -86,7 +90,7 @@ button:active, i:active {
     height: 10em;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
     .d1 img {
         height: 8em;
     }
@@ -146,6 +150,12 @@ button:active, i:active {
     box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
 }
 
+
+
+.name {
+    display: flex;
+    margin: 0 auto;
+}
 
 .d4_d1, .d4_d3 {
     width: 37%;
@@ -231,6 +241,7 @@ button:active, i:active {
     box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
 }
 
+
 .d5 button{
     width: 20%;
     font-size: 1em;
@@ -246,6 +257,7 @@ button:active, i:active {
     border: 0.4em solid;
     display: flex;
     border-color: var(--border-chrono-1) var(--border-chrono-2) var(--border-chrono-1) var(--border-chrono-2);
+    background: var(--score-board); 
     box-shadow: inset 0.2rem 0.2rem 0.5rem var(--couleur-shadow), inset -0.2rem -0.2rem 0.5rem var(--white);
     border-radius: 9999px;
     padding: 3vh;
