@@ -55,6 +55,7 @@ var t1 = 0;
 var t2 = 0;
 var t3 = 0;
 var t4 = 0;
+var t5 = 0;
 var MatchTimePaused = true;
 var ShotTimeLeft = parseInt(shotTimeValue); 
 var interval;
