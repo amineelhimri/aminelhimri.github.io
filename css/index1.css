@@ -15,7 +15,7 @@
 
 @font-face {
     font-family: myFirstFont;
-    src: url(../font/Poppins-Medium.ttf);
+    src: url(../font/SF-Pro.ttf);
  }
 
 * {
@@ -23,6 +23,7 @@
     margin: 0;
     padding: 0;
     font-family: myFirstFont;
+    user-select: none;
 }
 
 body {
@@ -32,6 +33,12 @@ body {
     background-position: center;
     text-shadow: 2px 2px 2px var(--score-board);
 
+}
+
+@media screen and (min-width: 900px) {
+    body {
+        font-size: 100%;
+    }
 }
 
 button, i {
@@ -76,9 +83,11 @@ button:active, i:active {
 @media screen and (min-width: 900px) {
     .container {
         height: max-content;
+        max-width: 600px;
+        gap: 10px
     }
-}
 
+}
 .d1 {
     display: flex;
     align-self: flex-start;
@@ -87,7 +96,12 @@ button:active, i:active {
 
 .d1 img {
     margin: 0 auto;
-    height: 10em;
+}
+
+@media screen and (min-width: 900px) {
+    .d1 img {
+        width: 50%;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -108,11 +122,18 @@ button:active, i:active {
 
 .d2 button{
     width: 45%;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
     border: none;
     padding: 1em;
     border-radius: 100px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 900px) {
+    .d2 button{
+        font-size: 1em;
+    }
 }
 
 
@@ -122,6 +143,12 @@ button:active, i:active {
     height: fit-content;
     width: 100%;
     margin: 0 auto;
+}
+
+@media screen and (min-width: 900px) {
+    .d3 {
+        margin: 0 auto -10px auto;
+    }
 }
 
 .d3 span {
@@ -151,7 +178,6 @@ button:active, i:active {
 }
 
 
-
 .name {
     display: flex;
     margin: 0 auto;
@@ -165,7 +191,7 @@ button:active, i:active {
 
 .d4_d1 span, .d4_d3 span {
     margin: 0 auto;
-    font-size: 1.3em;
+    font-size: 1.7em;
     font-weight: 700;
     text-align: center;
     color: var(--couleur-text);
@@ -189,7 +215,7 @@ button:active, i:active {
 }
 
 .E {
-    width: 1.5em;
+    padding: 0 0.7em;
     font-size: 1.3em;
     font-weight: 700;
     color: var(--couleur-text);
@@ -206,25 +232,25 @@ button:active, i:active {
 
 
 .d4_d1_d1 button, .d4_d3_d1 button {
-    width: 45%;
+    width: 0.9em;
+    padding: 0 0 0.3em 0.1em;
     height: 80%;
     font-size: 1.5em;
     font-weight: bold;
     border: none;
     border-radius: 5px;
-    justify-content: center;
 }
 
 
 
 .d4_d2 {
     width: 26%;
+    height: 45%;
     font-size: 2em;
     font-weight: 700;
     text-align: center;
     color: var(--couleur-text);
     align-self: flex-start;
-    margin-top: -1vh;
 }
 
 .d5 {
@@ -243,12 +269,11 @@ button:active, i:active {
 
 
 .d5 button{
-    width: 20%;
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: 700;
     border: none;
     border-radius: 72px;
-    padding: 0.5em 0;
+    padding: 0.5em 1em;
 }
 
 
@@ -321,4 +346,96 @@ button:active, i:active {
     font-size: 2.7em;
     font-weight: 600;
     color: var(--couleur-timer);
+}
+
+.d10 {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    height: fit-content;
+    width: 90%;
+    text-shadow: none;
+    padding: 4vh 1vh;
+    border-radius: 28px;
+    background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
+}
+
+.d10_1 {    
+    width: 40%;
+    height: max-content;
+    margin: auto auto;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--score-board), 0.2rem 0.2rem 0.5rem var(--couleur-background);
+    background-color: var(--white);
+    border-radius: 16px;
+    color: var(--score-board);
+    padding: 0.5em;
+}
+
+
+.d10_2{
+    width: 40%;
+    text-align: center;
+    margin: 2vh auto;
+    background: var(--score-board); 
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--couleur-shadow), inset -0.2rem -0.2rem 0.5rem var(--white);
+    border-radius: 13px;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.d10_2 > span{
+    font-size: 1.9em;
+    font-weight: 600;
+    color: var(--couleur-timer);
+}
+
+.d11 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    margin: auto;
+    padding: 1vh 1vh;
+    border-radius: 28px;
+    background-image: linear-gradient(to bottom, var(--score-board), var(--couleur-background));
+    box-shadow:  0.4rem 0.4rem 1rem rgba(0,0,0,0.2), -0.4rem -0.4rem 1rem rgba(0,0,0,0.2);
+}
+
+.d11_1 {
+    margin: 1em auto;
+    border: 0.4em solid;
+    display: flex;
+    border-color: var(--border-chrono-1);
+    background: var(--score-board); 
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--couleur-shadow), inset -0.2rem -0.2rem 0.5rem var(--white);
+    border-radius: 9999px;
+    padding: 3vh;
+    text-align: center;
+    width: fit-content;
+}
+
+.d11_d1_d0 {
+    width: 100%;
+    height: 100%;
+}
+
+.d11_d1_d0 span {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: var(--couleur-timer);
+}
+
+.d11 button { 
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 72px;
+    padding: 1em;
 }

@@ -1,3 +1,25 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+// Wait for the deviceready event before using any of Cordova's device APIs.
+// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
+
 const player1 = document.getElementById('p1');
 const player2 = document.getElementById('p2');
 const MTime = document.getElementById('MTime');
@@ -17,7 +39,7 @@ const rules = localStorage.getItem('Format');
 
 if(rules === "Shotout"){
     document.getElementById("Time").style = "display: none;";
-    t5 = 1;
+    IR = true;
     
 }
 
@@ -51,11 +73,10 @@ const TimeIsUp = new Audio('./audio/TimeIsUp.mp3');
 const r = document.querySelector(':root');
 
 var matchTimeLeft;
-var t1 = 0;
-var t2 = 0;
+var MatchStarted = false;
 var t3 = 0;
 var t4 = 0;
-var t5 = 0;
+var IR = false;
 var MatchTimePaused = true;
 var ShotTimeLeft = parseInt(shotTimeValue); 
 var interval;
@@ -63,7 +84,8 @@ var interval1;
 var interval2;
 var phaseF = false;
 var shotRuning = false;
-
+var shotPaused = false;
+var Timeout = false;
 
 
 function alerTime(){
@@ -191,7 +213,7 @@ function displayMatchTime(){
     if(matchTimeLeft == -1000){
         MTime.style = "color: var(--couleur-timer-2);";
         clearInterval(interval1);
-        t1 = 2;
+        MatchStarted = null;
         stoppy();
         r.style.setProperty('--border-chrono-1','#FF000090');
         STime.textContent = "0"; 
@@ -214,28 +236,32 @@ function startMatch(){
 }
 
 cont.addEventListener("click", function() {
-    if(t1 == 1 && t2 == 1){
+    if(MatchStarted && MatchTimePaused && !shotPaused){
         startMatch();
+        MatchTimePaused = false
         stoppy();
-        t2 = 0;
         startShot();
-        MatchTimePaused = false;
+        start.innerHTML = "Reset";
     }
 })
 
 const pause = document.getElementById('Pause');
 
 pause.addEventListener("click", function() {
-    if(t1 == 1){
+    if(MatchStarted && !MatchTimePaused){
+        if(shotRuning){
+            start.innerHTML = "Start";
+            shotRuning = false;
+        }
         clearInterval(interval1);
         clearInterval(interval);
         stoppy();
-        t2 = 1;
         MatchTimePaused = true;
-        if(phaseF){
-            shotTimeValue = 15;
-            ExtensionTime = 10;
+        if(shotRuning){
+            start.innerHTML = "Start";
+            shotRuning = false;
         }
+        
     }
 })
 
@@ -249,6 +275,7 @@ function displayShotTime(){
     if(ShotTimeLeft == -1){
         TimeIsUp.play();
         clearInterval(interval);
+        Timeout = true;
         return;
     }
     if(ShotTimeLeft == 15){
@@ -268,7 +295,7 @@ function displayShotTime(){
 }
 
 function startShot(){
-    if(ShotTimeLeft == parseInt(shotTimeValue) && t2 == 0){
+    if(ShotTimeLeft == parseInt(shotTimeValue) && !MatchTimePaused){
         displayShotTime();
         interval = setInterval(displayShotTime, 1000);
         shotRuning = true;
@@ -276,8 +303,16 @@ function startShot(){
 }
 
 start.addEventListener("click", function() {
-    if(t1 == 1){
-        startShot();
+    if(MatchStarted && !shotPaused){
+        if(!shotRuning){
+            start.innerHTML = "Reset";
+            startShot();
+        }
+        else{
+            start.innerHTML = "Start";
+            stoppy();
+            Timeout = false;
+        }
     }
 })
 
@@ -296,20 +331,36 @@ function stoppy() {
     shotRuning = false;
 }
 stopp.addEventListener("click", function() {
-    if(t1 == 1){
-        stoppy();
+    if(shotRuning && !Timeout){
+        if(!shotPaused){
+            stopp.innerHTML = "Resum"
+            clearInterval(interval);
+            clearInterval(interval1);
+            MatchTimePaused = true;
+            shotPaused = true;
+        }
+        else{
+            stopp.innerHTML = "Pause"
+            displayShotTime();
+            displayMatchTime();
+            interval = setInterval(displayShotTime, 1000);
+            interval1 = setInterval(displayMatchTime, 1000);
+            shotPaused = false;
+            MatchTimePaused = false;
+        }
     }
 })
 
 const startAll = document.getElementById("startAll");
 
 startAll.addEventListener("click", function() {
-    if(t1 == 0){
-        t1 = 1;
+    if(!MatchStarted){
+        start.innerHTML = "Reset";
+        MatchStarted = true;
+        MatchTimePaused = false;
         startShot();
         calcuMatchTime();
-        if(t5 == 0){
-            MatchTimePaused = false;
+        if(!IR){
             startMatch();
         }
     }
@@ -320,4 +371,5 @@ const reset = document.getElementById('reset');
 reset.addEventListener("click", function() {
     window.location.href = "index.html";
 })
+
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index1.css">
+        <title>
+            Six Red
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="d1">
+                <img src="img/logo1.png">
+            </div>
+            <div class="d3"><span id="raceTo">Six Red</span></div>
+            <div class="d10">
+                <div class="d10_1" id="pp1"><span id="p1">Player 1</span></div>
+                <div class="d10_1" id="pp2"><span id="p2">Player 2</span></div>
+                <div class="d10_2"><span id="sp1">00:00:00</span></div>
+                <div class="d10_2"><span id="sp2">00:00:00</span></div>
+            </div>
+            <div class="d11">
+                <button id="stop">Stop</button>
+                <div class="d11_1">
+                    <div class="d11_d1_d0"><span id="STime">00:00:00</span></div>
+                </div>
+                <button id="start">Start</button>
+            </div>
+            <div class="d2">
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+        <script>
+            const P1 = document.getElementById('p1');
+            const P2 = document.getElementById('p2');
+            const PP1 = document.getElementById('pp1');
+            const PP2 = document.getElementById('pp2');
+            const SP1 = document.getElementById('sp1');
+            const SP2 = document.getElementById('sp2');
+
+            
+
+            player1Value = localStorage.getItem('P_1');
+            player2Value = localStorage.getItem('P_2');
+
+            P1.textContent = player1Value;
+            P2.textContent = player2Value;
+
+            if(player1Value === ""){
+                P1.textContent = "Player 1";
+            }
+
+            if(player2Value === ""){
+                P2.textContent = "Player 2";
+            }
+
+            var x = 0;
+            var score;
+
+            PP1.addEventListener('click', function() {
+                if(x == 1){
+                    x = 0;
+                    PP1.style = "background-color: var(--white);"
+                }
+                else{
+                    x = 1;
+                    PP1.style = "background-color: var(--couleur-timer)";
+                    PP2.style = "background-color: var(--white);";
+                }
+                
+            })
+
+            PP2.addEventListener('click', function() {
+                if(x == 2){
+                    x = 0;
+                    PP2.style = "background-color: var(--white);";
+                }
+                else{
+                    x = 2;
+                    PP2.style = "background-color: var(--couleur-timer)";
+                    PP1.style = "background-color: var(--white);";
+                }
+            })
+
+            const start = document.getElementById('start');
+            const stop = document.getElementById('stop');
+            const Stime = document.getElementById('STime');
+            var date;
+            var interval;
+            var scoreRunning = false;
+
+            start.addEventListener('click', function() {
+                if(x != 0 && !scoreRunning){
+                    date = new Date();
+                    scoreRunning = true;
+                    interval = setInterval(chrono, 1000 / 60);
+                }
+            })
+
+            function chrono() {
+                const date1 = new Date();
+                let time = date1 - date;
+                let min = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                let sec = Math.floor((time % (1000 * 60)) / 1000).toString().padStart(2, '0');
+                let msec = Math.floor((time % (1000)) * 60 / 1000).toString().padStart(2, '0');
+                if(min === '00'){
+                    score = `${sec}:${msec}`;
+                    Stime.textContent = `${sec}:${msec}`;
+                }
+                else{
+                    score = `${min}:${sec}:${msec}`;
+                    Stime.textContent = `${min}:${sec}:${msec}`;
+                }
+            }
+
+            stop.addEventListener('click', function() {
+                if(x == 1 && scoreRunning){
+                    x = 0;
+                    PP1.style = "background-color: var(--white);"
+                    clearInterval(interval);
+                    scoreRunning = false;
+                    SP1.textContent = score;
+                }
+                if(x == 2 && scoreRunning){
+                    x = 0;
+                    PP2.style = "background-color: var(--white);"
+                    clearInterval(interval);
+                    scoreRunning = false;
+                    SP2.textContent = score;
+                }
+            })
+
+            reset.addEventListener('click', function() {
+                window.location.href = 'index.html';
+            })
+
+
+
+            
+
+
+
+        </script>
+    </body>
+</html>
