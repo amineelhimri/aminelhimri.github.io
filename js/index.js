@@ -68,7 +68,7 @@ const minus2 = document.getElementById('minus2');
 const borderChrono = document.getElementById('borderChrono');
 const ExtensionAudio = new Audio("./audio/extension.mp3");
 const ShotTimeAudioAlert = new Audio('./audio/shotTime.mp3');
-const TimeClose = new Audio('./audio/TimeClose.mp3');
+const TimeClose = new Audio('./audio/shotTime1.mp3');
 const TimeIsUp = new Audio('./audio/TimeIsUp.mp3');
 const r = document.querySelector(':root');
 
