@@ -283,6 +283,7 @@ function displayShotTime(){
     }
 
     if(ShotTimeLeft <= 5 && ShotTimeLeft >= 0){
+        TimeClose.load();
         r.style.setProperty('--border-chrono-1','#FF000090');
         alerTime();
         TimeClose.play();
