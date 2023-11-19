@@ -22,15 +22,14 @@
     margin: 0;
     padding: 0;
     font-family: myFirstFont, sans-serif;
-    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
 
 }
 
 body{
-    margin: 0;
-    font-size: 160%;
+    font-size: 140%;
     background-image: url('../img/background4.jpg');
-    background-position: center;
     text-shadow: 2px 2px 2px var(--score-board);
 }
 
@@ -62,10 +61,10 @@ button:active {
     display: flex;
     flex-wrap: wrap;
     max-width: 820px;
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     justify-content: center;
-    margin: 0 auto;
+    margin: 5vh auto;
 }
 
 @media screen and (min-width: 900px) {
@@ -158,14 +157,14 @@ select {
 }
 
 .d2 label {
-    width: 40%;
+    width: 50%;
     color: var(--couleur-text);
     text-transform: uppercase;
     font-weight: bold;
 }
 
 .d2 select {
-    width: 60%;
+    width: 50%;
     color: var(--border-chrono-1);
     box-shadow: 0.3rem 0.3rem 0.6rem var(--couleur-shadow), -0.2rem -0.2rem 0.5rem var(--white);
     border-radius: 10px;

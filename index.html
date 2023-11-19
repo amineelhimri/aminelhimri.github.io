@@ -28,7 +28,10 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <title>Ultimate</title>
@@ -75,7 +78,6 @@
                     <label for="matchTime">Match Time</label>
                     <select id="matchTime" names="matchTime">
                         <option value="01:00">1 min</option>
-                        <option value="02:00">2 min</option>
                         <option value="10:00">10 min</option>
                         <option value="20:00">20 min</option>
                         <option value="30:00" selected="selected">30 min</option>
@@ -120,6 +122,7 @@
                 </form>
             </div>
         </div>
+        <script src="cordova.js"></script>
         <script> 
             const form = document.getElementById('form1');
             const P_1 = document.getElementById('player1');

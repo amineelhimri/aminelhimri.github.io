@@ -19,6 +19,18 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+import { getDatabase, ref, push, onValue, remove, set} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+const appSettings = {
+    databaseURL: "https://ultimate-7afdd-default-rtdb.europe-west1.firebasedatabase.app/"
+}
+
+const app = initializeApp(appSettings);
+const database = getDatabase(app);
+const MTimeinDb = ref(database, "MatchTime/1");
+const STimeinDb = ref(database, "ShotTime/1");
+
 
 const player1 = document.getElementById('p1');
 const player2 = document.getElementById('p2');
@@ -37,6 +49,7 @@ const raceValue = parseInt(localStorage.getItem('raceTo'));
 const rules = localStorage.getItem('Format');
 
 
+
 if(rules === "Shotout"){
     document.getElementById("Time").style = "display: none;";
     IR = true;
@@ -46,7 +59,9 @@ if(rules === "Shotout"){
 player1.textContent = player1Value;
 player2.textContent = player2Value;
 MTime.textContent = matchTimeValue;
+set(MTimeinDb , matchTimeValue);
 STime.textContent = shotTimeValue;
+set(STimeinDb , shotTimeValue);
 race.textContent = `Race To ${raceValue}`;
 
 
@@ -68,7 +83,7 @@ const minus2 = document.getElementById('minus2');
 const borderChrono = document.getElementById('borderChrono');
 const ExtensionAudio = new Audio("./audio/extension.mp3");
 const ShotTimeAudioAlert = new Audio('./audio/shotTime.mp3');
-const TimeClose = new Audio('./audio/shotTime1.mp3');
+const TimeClose = new Audio('./audio/TimeClose.mp3');
 const TimeIsUp = new Audio('./audio/TimeIsUp.mp3');
 const r = document.querySelector(':root');
 
@@ -210,18 +225,22 @@ function displayMatchTime(){
         time = `${Shrs}:${Smin}:${Ssec}`;
     }
 
-    if(matchTimeLeft == -1000){
+    if(matchTimeLeft == 0){
         MTime.style = "color: var(--couleur-timer-2);";
         clearInterval(interval1);
         MatchStarted = null;
         stoppy();
         r.style.setProperty('--border-chrono-1','#FF000090');
         STime.textContent = "0"; 
+        set(STimeinDb , "0");
         alerTime();
         TimeIsUp.play();
+        MTime.textContent = time;
+        set(MTimeinDb , time);
     }
     else{
         MTime.textContent = time;
+        set(MTimeinDb , time);
     }
 
     if(matchTimeLeft <= (1000 * 60 * 10) && matchTimeLeft > 0){
@@ -231,7 +250,6 @@ function displayMatchTime(){
 }
 
 function startMatch(){
-    displayMatchTime();
     interval1 = setInterval(displayMatchTime, 1000);
 }
 
@@ -272,17 +290,19 @@ const start = document.getElementById('start');
 function displayShotTime(){
     chronoBorder1(ShotTimeLeft % 2);
     ShotTimeLeft--;
-    if(ShotTimeLeft == -1){
+    if(ShotTimeLeft == 0){
         TimeIsUp.play();
         clearInterval(interval);
         Timeout = true;
+        STime.textContent = ShotTimeLeft;
+        set(STimeinDb , "0");
         return;
     }
     if(ShotTimeLeft == 15){
         ShotTimeAudioAlert.play();
     }
 
-    if(ShotTimeLeft <= 5 && ShotTimeLeft >= 0){
+    if(ShotTimeLeft <= 5 && ShotTimeLeft > 0){
         TimeClose.load();
         r.style.setProperty('--border-chrono-1','#FF000090');
         alerTime();
@@ -293,11 +313,11 @@ function displayShotTime(){
         r.style.setProperty('--border-chrono-1','#00FF7F');
     }
     STime.textContent = ShotTimeLeft;
+    set(STimeinDb , ShotTimeLeft);
 }
 
 function startShot(){
     if(ShotTimeLeft == parseInt(shotTimeValue) && !MatchTimePaused){
-        displayShotTime();
         interval = setInterval(displayShotTime, 1000);
         shotRuning = true;
     }
@@ -328,6 +348,7 @@ function stoppy() {
     }
     ShotTimeLeft = parseInt(shotTimeValue);
     STime.textContent = ShotTimeLeft;
+    set(STimeinDb , ShotTimeLeft);
     clearInterval(interval);
     shotRuning = false;
 }

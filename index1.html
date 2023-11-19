@@ -2,7 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+        <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index1.css">
         <link rel="stylesheet" href="icons/css/all.css">
         <title>Ultimate</title>
@@ -12,6 +16,7 @@
             <div class="d1">
                 <img src="img/logo1.png">
             </div>
+            <div class="scoreboard">
             <div class="d3"><span id="raceTo">Race To 5</span></div>
             <div class="d4">
                 <div class="d4_d1">
@@ -38,6 +43,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="d5">
                 <button id="stop">Pause</button>
                 <div class="d5_d1" id="borderChrono">
@@ -52,9 +58,9 @@
             </div>
             <div class="d2">
                 <button id="startAll">Start</button>
-                <button id="reset">Reset</button>
+                <i class="fa-solid fa-right-from-bracket" id="reset"></i>
             </div>
         </div>
-        <script src="js/index.js"></script>
+        <script type="module" src="js/index.js"></script>
     </body>
  </html>

@@ -2,8 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+        <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index1.css">
+        <link rel="stylesheet" href="icons/css/all.css">
         <title>
             Six Red
         </title>
@@ -13,22 +17,24 @@
             <div class="d1">
                 <img src="img/logo1.png">
             </div>
-            <div class="d3"><span id="raceTo">Six Red</span></div>
+            <div class="scoreboard">
+            <div class="d3"><span id="raceTo" style="font-size:1.5em;">Six Red</span></div>
             <div class="d10">
                 <div class="d10_1" id="pp1"><span id="p1">Player 1</span></div>
                 <div class="d10_1" id="pp2"><span id="p2">Player 2</span></div>
                 <div class="d10_2"><span id="sp1">00:00:00</span></div>
                 <div class="d10_2"><span id="sp2">00:00:00</span></div>
             </div>
-            <div class="d11">
-                <button id="start">Start</button>              
+        </div>
+            <div class="d11">      
                 <div class="d11_1">
                     <div class="d11_d1_d0"><span id="STime">00:00:00</span></div>
                 </div>
-                <button id="stop">Stop</button>
+                <button id="start">Start</button> 
+                <button id="stop" style = "display: none;">Stop</button>
             </div>
-            <div class="d2">
-                <button id="reset">Reset</button>
+            <div class="d2" style="padding: 0;">
+                <i class="fa-solid fa-right-from-bracket" id="reset"></i>
             </div>
         </div>
         <script>
@@ -84,7 +90,7 @@
             })
 
             const start = document.getElementById('start');
-            const stop = document.getElementById('stop');
+            const stopp = document.getElementById('stop');
             const Stime = document.getElementById('STime');
             var date;
             var interval;
@@ -92,6 +98,8 @@
 
             start.addEventListener('click', function() {
                 if(x != 0 && !scoreRunning){
+                    start.style = "display: none;"
+                    stopp.style = "display: flex;"
                     date = new Date();
                     scoreRunning = true;
                     interval = setInterval(chrono, 1000 / 60);
@@ -114,8 +122,10 @@
                 }
             }
 
-            stop.addEventListener('click', function() {
+            stopp.addEventListener('click', function() {
                 if(x == 1 && scoreRunning){
+                    start.style = "display: flex;"
+                    stopp.style = "display: none;"
                     x = 0;
                     PP1.style = "background-color: var(--white);"
                     clearInterval(interval);
@@ -123,6 +133,8 @@
                     SP1.textContent = score;
                 }
                 if(x == 2 && scoreRunning){
+                    start.style = "display: flex;"
+                    stopp.style = "display: none;"
                     x = 0;
                     PP2.style = "background-color: var(--white);"
                     clearInterval(interval);
